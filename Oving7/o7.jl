@@ -30,7 +30,43 @@ function min_coins_greedy(coins, value)
     return coin_count
 end
 
+function min_coins_dynamic(coins, value)
+    inf = 1000000000
+    table = []
+    sub_res = 0
+
+    for i in 1:value+1
+        push!(table, inf)
+    end
+    table[1] = 0
+    #println("Table = ", table)
+
+    
+    for i in 2:value+1
+        for j in 1:length(coins)
+            if coins[j] <= i - 1
+
+                #println("i = ", i)
+                #println("j = ", j)
+                #println("Coins[j] = ", coins[j])
+                sub_res = table[i-coins[j]]
+                
+                if (sub_res != inf) .& (sub_res + 1 < table[i])
+                    table[i] = sub_res + 1
+                
+                end
+                #println("Table = ", table)
+            end
+        end
+    end
+
+    return table[end]  
+
+
+end
 
 coins = [1000, 500, 100, 20, 5, 1]
 
-min_coins_greedy(coins, 1226)
+#min_coins_greedy(coins, 1226)
+
+min_coins_dynamic(coins, 1226)
