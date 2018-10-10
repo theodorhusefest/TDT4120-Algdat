@@ -46,16 +46,17 @@ function min_coins_dynamic(coins, value)
         for j in 1:length(coins)
             if coins[j] <= i - 1
 
-                #println("i = ", i)
-                #println("j = ", j)
-                #println("Coins[j] = ", coins[j])
+                println("i = ", i)
+                println("j = ", j)
+                println("Coins[j] = ", coins[j])
                 sub_res = table[i-coins[j]]
+                println("sub_res = ", sub_res) 
                 
                 if (sub_res != inf) .& (sub_res + 1 < table[i])
                     table[i] = sub_res + 1
+                    println("Table = ", table)
                 
                 end
-                #println("Table = ", table)
             end
         end
     end
@@ -65,8 +66,8 @@ function min_coins_dynamic(coins, value)
 
 end
 
-coins = [1000, 500, 100, 20, 5, 1]
+coins = [4, 3, 1]
 
 #min_coins_greedy(coins, 1226)
 
-min_coins_dynamic(coins, 1226)
+min_coins_dynamic(coins, 6)
