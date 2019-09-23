@@ -1,4 +1,5 @@
 
+# Ikke ferdig
 
 function floyd_warshall(adj_matrix, n, f, g)
     D = zeros(Float64, n, n)
